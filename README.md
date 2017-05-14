@@ -1,2 +1,4 @@
-# grpc-go-example
-grpc golang example
+### gRPC Golang example
+```bash
+protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:helloworld
+```
