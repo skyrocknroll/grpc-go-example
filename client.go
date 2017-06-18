@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	address     = "localhost:50051"
+	address     = "localhost:5001"
 	defaultName = "Adhavan"
 )
 
@@ -27,9 +27,12 @@ func main() {
 	if len(os.Args) > 1 {
 		name = os.Args[1]
 	}
-	r, err := c.SayHello(context.Background(), &pb.HelloRequest{Name: name})
-	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+	for i := 0; i < 1000000; i++ {
+		r, err := c.SayHello(context.Background(), &pb.HelloRequest{Name: name})
+		if err != nil {
+			log.Fatalf("could not greet: %v", err)
+		}
+		log.Printf("Greeting: %s", r.Message)
 	}
-	log.Printf("Greeting: %s", r.Message)
+
 }
